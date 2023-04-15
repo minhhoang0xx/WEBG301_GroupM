@@ -10,7 +10,7 @@ class Artist extends Model
     use HasFactory;
     protected $table = 'artists';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'birthday', 'hometown','outstanding','description','price'];
+    protected $fillable = ['first-name', 'last-name','birthday', 'hometown','outstanding','description'];
 
     public function getCategory()
     {

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArtistResource\Pages;
-use App\Filament\Resources\ArtistResource\RelationManagers;
-use App\Models\Artist;
+use App\Filament\Resources\BookingRequestResource\Pages;
+use App\Filament\Resources\BookingRequestResource\RelationManagers;
+use App\Models\BookingRequest;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ArtistResource extends Resource
+class BookingRequestResource extends Resource
 {
-    protected static ?string $model = Artist::class;
+    protected static ?string $model = BookingRequest::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -32,17 +32,9 @@ class ArtistResource extends Resource
                 Forms\Components\TextInput::make('img')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('birthday')
+                Forms\Components\TextInput::make('date')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('hometown')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('outstanding')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535),
             ]);
     }
 
@@ -53,10 +45,7 @@ class ArtistResource extends Resource
                 Tables\Columns\TextColumn::make('first-name'),
                 Tables\Columns\TextColumn::make('last-name'),
                 Tables\Columns\TextColumn::make('img'),
-                Tables\Columns\TextColumn::make('birthday'),
-                Tables\Columns\TextColumn::make('hometown'),
-                Tables\Columns\TextColumn::make('outstanding'),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('date'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -83,9 +72,9 @@ class ArtistResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArtists::route('/'),
-            'create' => Pages\CreateArtist::route('/create'),
-            'edit' => Pages\EditArtist::route('/{record}/edit'),
+            'index' => Pages\ListBookingRequests::route('/'),
+            'create' => Pages\CreateBookingRequest::route('/create'),
+            'edit' => Pages\EditBookingRequest::route('/{record}/edit'),
         ];
     }    
 }
